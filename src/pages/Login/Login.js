@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Axios from "axios";
 import  'react-router-dom';
 // import { link, withRouter } from 'react-router'
+import Header from "../../components/Headers/Header"
 import { parseJwt } from '../../services/auth';
 export default class Login extends Component {
     constructor() {
@@ -40,8 +41,8 @@ export default class Login extends Component {
     render() {
 
         return (
-            
             <div>
+            <Header></Header>
                 <form onSubmit={this.efetuarLogin.bind(this)}>
                     <div>
                         <label htmlFor="email">Email</label>
