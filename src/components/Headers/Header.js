@@ -23,11 +23,8 @@ export default class Header extends Component {
                                     </li>
                                     <li>
                                         <button href="MinhasConsultas">
-                                            Cadastrar de consulta
+                                            Gerenciamento de consulta
                                         </button>
-                                    </li>
-                                    <li>
-                                        <button href="MinhasConsultas">Lista de consultas</button>
                                     </li>
                                 </ul>
                             </nav>

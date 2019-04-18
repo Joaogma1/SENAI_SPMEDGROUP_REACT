@@ -42,7 +42,7 @@ export default class Login extends Component {
 
         return (
             <div>
-            <Header></Header>
+            {/* <Header></Header> */}
                 <form onSubmit={this.efetuarLogin.bind(this)}>
                     <div>
                         <label htmlFor="email">Email</label>
