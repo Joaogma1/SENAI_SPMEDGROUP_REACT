@@ -1,0 +1,85 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.menu.escondido{
+    display: none;
+
+}
+body{
+    font-size: 14px;
+}
+.top-bar{
+    width: 100%;
+    height: auto;
+    background: #000000;
+    display: flex;
+    padding: 1% 5%;
+}
+.logo{
+    color:#fff;
+    display: flex;
+    font-size: 1em;
+    /* background: #888; */
+    flex:1;
+    justify-content: space-between;
+}
+.menu{
+    flex:3;
+}
+.menu ul{
+    list-style-type: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.menu ul li{
+    flex:1;
+    /* background: #444; */
+    text-align: center;
+}
+.menu ul a{
+    color:#FFF;
+    text-decoration: none;
+    font-size: 1.4em;
+    padding: 0.8em 2em;
+}
+.menu ul a:hover{
+    color: rgb(24, 157, 240);
+}
+@media screen and (max-width:910px){
+    .top-bar{
+        flex-direction: column;
+        text-align: center;
+    }
+    .menu ul{
+        flex-direction: column;
+    }
+    .logo{
+        display: flex;
+    }
+    .cont-principal-itens{
+        flex-direction: column;
+        align-items: center;
+    }
+    .menu ul a {
+        padding: 0.4em;
+    }
+}
+@media screen and (max-width: 600px){
+    .banner{
+        height: 70vh ;
+    }
+     .banner-text{
+         font-size: 0.8em;
+         width: 90%;
+ 
+     }
+     .banner-text p {
+         font-size: 1.6em;
+     }
+     .contact-itens form{
+         width: 90vw;
+     }
+ }

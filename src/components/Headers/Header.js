@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
+import {Link} from 'react-router-dom';
+import './header.css'
 export default class Header extends Component {
 
-    logout(){
+    logout() {
         localStorage.removeItem("usuario-spmedgroup");
+        window.location.reload();
     }
-    NavBar(){
+    NavBar() {
         var TipoUsuario = parseJwt().Role;
         try {
             if (usuarioAutenticado) {
@@ -13,64 +16,67 @@ export default class Header extends Component {
                 switch (TipoUsuario) {
                     case "administrador":
                         return (
-                            <nav>
-                                <ul>
+                            <nav id="menuTopo" class="menu">
+                                <ul className= "escondido">
                                     <li>
-                                        <button href="MinhasConsultas">Lista de medicos</button>
+                                        <Link to="/medicos">Lista de medicos</Link>
                                     </li>
                                     <li>
-                                        <button href="MinhasConsultas"> Lista de pacientes</button>
+                                        <Link to="/pacientes"> Lista de pacientes</Link>
                                     </li>
                                     <li>
-                                        <button href="MinhasConsultas">
+                                        <Link to="/cadastrarConsulta">
                                             Gerenciamento de consulta
-                                        </button>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link onClick={this.logout.bind(this)}>Sair</Link>
                                     </li>
                                 </ul>
                             </nav>
                         );
                     case "paciente":
                         return (
-                            <nav>
-                                <ul>
+                            <nav id="menuTopo" class="menu">
+                                <ul className= "escondido">
                                     <li>
-                                        <button href="MinhasConsultas">Lista de medicos</button>
+                                        <Link to= "/medicos">Lista de medicos</Link>
                                     </li>
                                     <li>
-                                        <button href="MinhasConsultas">Minhas consultas</button>
+                                        <Link to ="/minhasConsultas">Minhas consultas</Link>
+                                    </li>
+                                    <li>
+                                        <Link onClick={this.logout.bind(this)}>Sair</Link>
                                     </li>
                                 </ul>
                             </nav>
                         );
                     case "medico":
                         return (
-                            <nav>
-                                <ul>
+                            <nav id="menuTopo" class="menu">
+                                <ul className= "escondido">
                                     <li>
-                                        <button href="MinhasConsultas">Minhas consultas</button>
+                                        <Link to ="/minhasConsultas">Minhas consultas</Link>
                                     </li>
                                     <li>
-                                    <button onClick={this.logout.bind(this)}>Sair</button>
+                                        <Link onClick={this.logout.bind(this)}>Sair</Link>
                                     </li>
                                 </ul>
                             </nav>);
                 }
-            }else{
-                return(
-                    <span> Você deve estar logado !</span>
-                );
-            }
+            } 
         } catch {
-            return(
-                <span> Você deve estar logado !</span>
-            );
+            
         }
 
     }
     render() {
         return (
-            <header>
-            {this.NavBar()}
+            <header className="top-bar">
+                <div class="logo">
+                    <h1 style={{color: "dodgerblue"}}>SPMedGroup</h1>
+                </div>
+                {this.NavBar()}
             </header>
         );
     }

@@ -44,6 +44,7 @@ export default class CadastrarConsulta extends Component {
                     'Authorization': "bearer " + localStorage.getItem('usuario-spmedgroup')
                 }
             })
+            .then(this.CarregarConsultas())
             .catch(erro => console.log(erro))
     }
     CarregarPacientes(event) {
@@ -94,34 +95,50 @@ export default class CadastrarConsulta extends Component {
                         <label>
                             Nome Paciente
                                 {/* Falta implementar isso nas outras coisas */}
-                            <select>
-                                {/* {this.state.listaTiposEventos.map(element => {
+                            <select value={this.state.idPaciente} onChange={this.atualizaEstadoIdPaciente.bind(this)}>
+                                <option >Nome do Paciente</option>
+                                {this.state.listaPacientes.map(element => {
                                     return (
-                                        <option key={element.id} value={element.id}>   
+                                        <option key={element.id} value={element.id}>
                                             {element.nome}
                                         </option>
                                     );
-                                })} */}
+                                })}
                             </select>
                         </label>
                         <label>
-                            nome Médico
-                            <select>
+                            Nome Médico
+                            <select value={this.state.idMedico} onChange={this.atualizaEstadoIdMedico.bind(this)}>
+                                <option >Nome do medico</option>
+                                {this.state.listaMedicos.map(element => {
+                                    return (
+                                        <option key={element.id} value={element.id}>
+                                            {element.nome}
+                                        </option>
+                                    );
+                                })}
 
                             </select>
                         </label>
                         <label>
                             Status
-                            <input type="text" />
+                            <select value={this.state.statusConsulta} onChange={this.atualizaStatusConsulta.bind(this)}>
+                            <option>Selecione</option>
+                                <option value="Agendada">Agendada</option>
+                                <option value="Realizada">Realizada</option>
+                                <option value="Cancelada">Cancelada</option>
+
+                            </select>
                         </label>
                         <label>
                             Data
-                            <input type="date" />
+                            <input type="date" onChange={this.atualizaEstadoDataConsulta.bind(this)} value={this.state.dataConsulta} />
                         </label>
                         <label>
                             Descricao
-                            <textarea style={{ resize: "none" }}></textarea>
+                            <  textarea onChange={this.atualizaStatusDescricao.bind(this)} value={this.state.descricao} style={{ resize: "none" }}></textarea>
                         </label>
+                        <button type="submit">Cadastrar</button>
                     </form>
                 </div>
                 <div>

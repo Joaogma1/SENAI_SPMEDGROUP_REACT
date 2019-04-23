@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import Axios from "axios";
-import  'react-router-dom';
+import 'react-router-dom';
 // import { link, withRouter } from 'react-router'
-import Header from "../../components/Headers/Header"
-import { parseJwt } from '../../services/auth';
+import { parseJwt, usuarioAutenticado } from '../../services/auth';
 export default class Login extends Component {
     constructor() {
         super();
@@ -11,6 +10,9 @@ export default class Login extends Component {
             email: '',
             senha: ''
         }
+    }
+    componentDidMount() {
+    
     }
     atualizaEstadoEmail(event) {
         this.setState({ email: event.target.value });
@@ -27,22 +29,20 @@ export default class Login extends Component {
             .then(data => {
                 if (data.status === 200) {
                     localStorage.setItem("usuario-spmedgroup", data.data.token);
-                    setTimeout(function(){
-                        // this.props.history.push("/"); Preciso arrumar ISSO ****
-                    },50)
+                    this.props.history.push("/minhasConsultas");
+                    window.location.reload();
                 }
             })
             .catch(erro => console.log(erro))
-            console.log(parseJwt().Role);
+        console.log(parseJwt().Role);
     }
-    
+
 
 
     render() {
 
         return (
             <div>
-            {/* <Header></Header> */}
                 <form onSubmit={this.efetuarLogin.bind(this)}>
                     <div>
                         <label htmlFor="email">Email</label>
