@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { parseJwt, usuarioAutenticado } from '../../services/auth';
 import {Link} from 'react-router-dom';
+import logo from './icon-login.png'
 import './header.css'
 export default class Header extends Component {
 
@@ -16,7 +17,7 @@ export default class Header extends Component {
                 switch (TipoUsuario) {
                     case "administrador":
                         return (
-                            <nav id="menuTopo" class="menu">
+                            <nav id="menuTopo" className="menu">
                                 <ul className= "escondido">
                                     <li>
                                         <Link to="/medicos">Lista de medicos</Link>
@@ -37,7 +38,7 @@ export default class Header extends Component {
                         );
                     case "paciente":
                         return (
-                            <nav id="menuTopo" class="menu">
+                            <nav id="menuTopo" className="menu">
                                 <ul className= "escondido">
                                     <li>
                                         <Link to= "/medicos">Lista de medicos</Link>
@@ -53,13 +54,13 @@ export default class Header extends Component {
                         );
                     case "medico":
                         return (
-                            <nav id="menuTopo" class="menu">
+                            <nav id="menuTopo" className="menu">
                                 <ul className= "escondido">
                                     <li>
                                         <Link to ="/minhasConsultas">Minhas consultas</Link>
                                     </li>
                                     <li>
-                                        <Link onClick={this.logout.bind(this)}>Sair</Link>
+                                        <Link to ="/login" onClick={this.logout.bind(this)}>Sair</Link>
                                     </li>
                                 </ul>
                             </nav>);
@@ -73,8 +74,8 @@ export default class Header extends Component {
     render() {
         return (
             <header className="top-bar">
-                <div class="logo">
-                    <h1 style={{color: "dodgerblue"}}>SPMedGroup</h1>
+                <div className="logo">
+                <img src={logo} className="logo__header" alt="Logo SPMedGroup" />
                 </div>
                 {this.NavBar()}
             </header>

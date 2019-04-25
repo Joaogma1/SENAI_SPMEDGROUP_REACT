@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 import Header from '../../components/Headers/Header'
+import "./Medicos.css"
 export default class ListaMed extends Component {
     constructor(props) {
         super(props);
-        this.state= {
+        this.state = {
             listaMedicos: []
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         this.CarregarMedicos();
     }
     CarregarMedicos(event) {
@@ -23,34 +24,28 @@ export default class ListaMed extends Component {
             })
     }
 
-    
-  render() {
-    return (
-      <div>
-          <Header></Header>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>CRM</th>
-                    <th>Especialidade</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    this.state.listaMedicos.map(Element =>{
-                        return(
-                            <tr key={Element.id}>
-                                <td>{Element.nome}</td>
-                                <td>{Element.crm}</td>
-                                <td>{Element.idEspecialidadeNavigation.nome}</td>
-                            </tr>
-                        )
-                    })
-                }
-            </tbody>
-        </table>
-      </div>
-    )
-  }
+
+    render() {
+        return (
+            <div>
+                <Header></Header>
+                <div className="Container__Medicos">
+
+                    {
+                        this.state.listaMedicos.map(Element => {
+                            return (
+                                <div className="Content__Medicos" key={Element.id}>
+                                    <div>
+                                    <label>Nome: <h3>{Element.nome}</h3></label>
+                                    <label>CRM: <h3>{Element.crm}</h3></label>
+                                    <label>Especialidade: <h3>{Element.idEspecialidadeNavigation.nome}</h3></label>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+        )
+    }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 import Header from '../../components/Headers/Header'
+import './pacientes.css'
 export default class ListaPacientes extends Component {
     constructor(props) {
         super(props);
@@ -27,35 +28,38 @@ export default class ListaPacientes extends Component {
         return (
             <div>
                 <Header></Header>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Telefone</th>
-                            <th>Data de nascimento</th>
-                            <th>RG</th>
-                            <th>CPF</th>
-                            <th>Endereco</th>
+                <div className="Div__table">
+                    <table class="rtable">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Data de nascimento</th>
+                                <th>RG</th>
+                                <th>CPF</th>
+                                <th>Endereco</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                this.state.listaPacientes.map(Element => {
+                                    return (
+                                        <tr key={Element.id}>
+                                            <td>{Element.nome}</td>
+                                            <td>{Element.telefone}</td>
+                                            <td>{Element.dataNascimento}</td>
+                                            <td>{Element.rg}</td>
+                                            <td>{Element.cpf}</td>
+                                            <td>{Element.endereco}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.listaPacientes.map(Element => {
-                                return (
-                                    <tr key={Element.id}>
-                                        <td>{Element.nome}</td>
-                                        <td>{Element.telefone}</td>
-                                        <td>{Element.dataNascimento}</td>
-                                        <td>{Element.rg}</td>
-                                        <td>{Element.cpf}</td>
-                                        <td>{Element.endereco}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         )
     }

@@ -1,0 +1,44 @@
+.Container__Medicos{
+    background-color: white;
+    max-width: 35%;
+    border: solid;
+    border-radius: 5%;
+    margin: 5em auto ;
+    display: flex;
+}
+.Content__Medicos{
+    border-color: black;
+    border-bottom-width: 20px;
+    border-radius: 5%;
+    padding-top: 1em;
+    margin: 1em auto ;    
+    text-align: center;
+    padding-bottom: 1em;
+}
+.Content__Medicos h3{
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.divSeparacao{
+    text-align: center;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    width: 100%;
+    height: 0.2em;
+    background-color: black;
+}
+.CadastroGeral{
+    display: flex;
+    justify-content: space-around;
+}
+.form__CadastroGeral{
+    display: flex;
+    flex-direction: column;
+    margin-top: 11em;
+}
+.Div__table
+{
+    display: flex;
+    justify-content: space-around;
+
+}

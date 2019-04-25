@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import Axios from "axios";
 import 'react-router-dom';
+import logo from './icon-login.png'
+import { parseJwt, usuarioAutenticado } from '../../services/auth'
 // import { link, withRouter } from 'react-router'
-import { parseJwt, usuarioAutenticado } from '../../services/auth';
+import './Login.css'
+import { timeout } from 'q';
 export default class Login extends Component {
     constructor() {
         super();
@@ -11,8 +14,14 @@ export default class Login extends Component {
             senha: ''
         }
     }
+    verificaLogado(){
+        if (usuarioAutenticado) {
+            timeout()
+            // this.props.history.push("/minhasConsultas");
+        }
+    }
     componentDidMount() {
-    
+    this.verificaLogado();
     }
     atualizaEstadoEmail(event) {
         this.setState({ email: event.target.value });
@@ -40,34 +49,30 @@ export default class Login extends Component {
 
 
     render() {
-
         return (
             <div>
-                <form onSubmit={this.efetuarLogin.bind(this)}>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            className="input__login"
-                            placeholder="Digite seu email"
-                            type="email"
-                            value={this.state.email}
-                            onChange={this.atualizaEstadoEmail.bind(this)}
-                            name="email" />
-                    </div>
-                    <div>
-                        <label htmlFor="senha">Senha</label>
-                        <input
-                            className="input__senha"
-                            placeholder="Digite sua Senha"
-                            type="password"
-                            value={this.state.senha}
-                            onChange={this.atualizaEstadoSenha.bind(this)}
-                            name="senha" />
-                    </div>
-                    <button type="submit" className="btn__login" id="btn__login">
-                        Login
-                </button>
-                </form>
+                <div class="login-page">
+             <div class="form">
+             <form className="login-form" onSubmit={this.efetuarLogin.bind(this)}>
+                        <img src={logo} className ="logo__form" alt="Logo SPMedGroup" />
+                        <h1 style ={{margin: "10px auto"}}>SPMedGroup</h1>
+                 <h2 style ={{ paddingBottom:" 0.3em"}}>Login</h2>
+                    <input 
+                    type="email" 
+                   name="email" 
+                     value={this.state.email}
+                     onChange={this.atualizaEstadoEmail.bind(this)}
+                    placeholder="E-mail" />
+                   <input 
+                     type="password" 
+                    name="senha" 
+                    placeholder="Senha" 
+                    value={this.state.senha}
+                     onChange={this.atualizaEstadoSenha.bind(this)} />
+                     <button type="submit">Logar</button>
+                 </form>
+             </div>
+         </div>
             </div>
         )
     }

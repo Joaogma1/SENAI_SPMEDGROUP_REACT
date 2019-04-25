@@ -44,8 +44,12 @@ export default class CadastrarConsulta extends Component {
                     'Authorization': "bearer " + localStorage.getItem('usuario-spmedgroup')
                 }
             })
-            .then(this.CarregarConsultas())
-            .catch(erro => console.log(erro))
+            .then(data => {
+                if (data.status === 200) {
+                    window.location.reload();
+                }
+            })
+            
     }
     CarregarPacientes(event) {
         Axios.get('http://localhost:5000/api/Pacientes', {
@@ -90,85 +94,85 @@ export default class CadastrarConsulta extends Component {
         return (
             <div>
                 <Header></Header>
-                <div>
-                    <form onSubmit={this.CadastrarConsulta.bind(this)}>
-                        <label>
-                            Nome Paciente
-                                {/* Falta implementar isso nas outras coisas */}
-                            <select value={this.state.idPaciente} onChange={this.atualizaEstadoIdPaciente.bind(this)}>
-                                <option >Nome do Paciente</option>
-                                {this.state.listaPacientes.map(element => {
-                                    return (
-                                        <option key={element.id} value={element.id}>
-                                            {element.nome}
-                                        </option>
-                                    );
-                                })}
-                            </select>
-                        </label>
-                        <label>
-                            Nome Médico
+                <div className="CadastroGeral">
+                    <div >
+                        <form className="form__CadastroGeral" onSubmit={this.CadastrarConsulta.bind(this)}>
+                             
+                             
+                                <select value={this.state.idPaciente} onChange={this.atualizaEstadoIdPaciente.bind(this)}>
+                                    <option >Nome do Paciente</option>
+                                    {this.state.listaPacientes.map(element => {
+                                        return (
+                                            <option key={element.id} value={element.id}>
+                                                {element.nome}
+                                            </option>
+                                        );
+                                    })}
+                                </select>
+                            
+                             
+                                
                             <select value={this.state.idMedico} onChange={this.atualizaEstadoIdMedico.bind(this)}>
-                                <option >Nome do medico</option>
-                                {this.state.listaMedicos.map(element => {
-                                    return (
-                                        <option key={element.id} value={element.id}>
-                                            {element.nome}
-                                        </option>
-                                    );
-                                })}
+                                    <option >Nome do medico</option>
+                                    {this.state.listaMedicos.map(element => {
+                                        return (
+                                            <option key={element.id} value={element.id}>
+                                                {element.nome}
+                                            </option>
+                                        );
+                                    })}
 
-                            </select>
-                        </label>
-                        <label>
-                            Status
+                                </select>
+                            
+                             
+                                
                             <select value={this.state.statusConsulta} onChange={this.atualizaStatusConsulta.bind(this)}>
-                            <option>Selecione</option>
-                                <option value="Agendada">Agendada</option>
-                                <option value="Realizada">Realizada</option>
-                                <option value="Cancelada">Cancelada</option>
+                                    <option>Selecione o status</option>
+                                    <option value="Agendada">Agendada</option>
+                                    <option value="Realizada">Realizada</option>
+                                    <option value="Cancelada">Cancelada</option>
 
-                            </select>
-                        </label>
-                        <label>
-                            Data
+                                </select>
+                            
+                             
+                               
                             <input type="date" onChange={this.atualizaEstadoDataConsulta.bind(this)} value={this.state.dataConsulta} />
-                        </label>
-                        <label>
-                            Descricao
-                            <  textarea onChange={this.atualizaStatusDescricao.bind(this)} value={this.state.descricao} style={{ resize: "none" }}></textarea>
-                        </label>
-                        <button type="submit">Cadastrar</button>
-                    </form>
-                </div>
-                <div>
-                    <table>
+                            
+                             
+                                
+                            <  textarea placeholder="Digite a descrição caso necessario" onChange={this.atualizaStatusDescricao.bind(this)} value={this.state.descricao} style={{ resize: "none" }}></textarea>
+                            
+                            <button type="submit">Cadastrar</button>
+                        </form>
+                    </div>
+                    <div>
+                    <table class="rtable">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>dataConsulta</th>
-                                <th>Paciente</th>
-                                <th>Medico</th>
-                                <th>statusConsulta</th>
-                                <th>descricao</th>
+                                <th>ID consulta</th>
+                                    <th>data da Consulta</th>
+                                    <th>Paciente</th>
+                                    <th>Medico</th>
+                                    <th>statusConsulta</th>
+                                    <th>descricao</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.listaConsultas.map(Element => {
-                                return (
-                                    <tr key={Element.id}>
-                                        <td> {Element.id}</td>
-                                        <td> {Element.dataConsulta}</td>
-                                        <td>{Element.idPacienteNavigation.nome}</td>
-                                        <td>{Element.idMedicoNavigation.nome}</td>
-                                        <td>{Element.statusConsulta}</td>
-                                        <td>{Element.descricao}</td>
-                                    </tr>
-                                );
-                            })}
+                             {this.state.listaConsultas.map(Element => {
+                                    return (
+                                        <tr key={Element.id}>
+                                            <td> {Element.id}</td>
+                                            <td> {Element.dataConsulta}</td>
+                                            <td>{Element.idPacienteNavigation.nome}</td>
+                                            <td>{Element.idMedicoNavigation.nome}</td>
+                                            <td>{Element.statusConsulta}</td>
+                                            <td>{Element.descricao}</td>
+                                        </tr>
+                                    );
+                                })}
                         </tbody>
                     </table>
-
+                    </div>
                 </div>
             </div>
         )
