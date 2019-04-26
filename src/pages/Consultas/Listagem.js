@@ -29,7 +29,8 @@ export default class Listagem extends Component {
     return (
         <div>
         <Header></Header>
-                           <table>
+        <div className="Div__table">
+                           <table className="rtable">
                         <thead>
                         {
                                 (parseJwt().Role === 'medico') ?
@@ -89,6 +90,7 @@ export default class Listagem extends Component {
                         </tbody>
                         
                     </table>
+                    </div>
       </div>
     )
   }
