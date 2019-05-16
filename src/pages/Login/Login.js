@@ -14,11 +14,6 @@ export default class Login extends Component {
             isEnabled : true
         }
     }
-    verificaAutenticado(){
-        if (usuarioAutenticado) {
-            this.props.history.push("/minhasConsultas")
-        }
-    }
     componentDidMount(){
         //console.log(usuarioAutenticado();
         if (usuarioAutenticado()) {
