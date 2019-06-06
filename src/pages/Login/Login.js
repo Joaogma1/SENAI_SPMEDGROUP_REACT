@@ -3,6 +3,16 @@ import Axios from "axios";
 import 'react-router-dom';
 import logo from './icon-login.png'
 import {usuarioAutenticado } from '../../services/auth'
+
+// //#region Teste
+// import PlacesAutocomplete from 'react-places-autocomplete'; 
+
+// import {
+//     geocodeByAddress,
+//     geocodeByPlaceId,
+//     getLatLng,
+//   } from 'react-places-autocomplete';
+// //#endregion
 // import { link, withRouter } from 'react-router'
 import './Login.css'
 export default class Login extends Component {
@@ -31,6 +41,7 @@ export default class Login extends Component {
         this.setState({ senha: event.target.value });
         
     }
+    
     efetuarLogin(event) {
         event.preventDefault();
         Axios.post("http://localhost:5000/api/Login", {
@@ -52,6 +63,7 @@ export default class Login extends Component {
     render() {
         return (
             <div>
+             
                 <div className="login-page">
              <div class="form">
              <form className="login-form" onSubmit={this.efetuarLogin.bind(this)}>

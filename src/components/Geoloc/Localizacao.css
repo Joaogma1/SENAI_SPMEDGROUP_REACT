@@ -1,0 +1,19 @@
+.entradaLocalizacao
+{
+    width: 50%;
+    box-sizing: border-box;
+    border: none;
+    text-align: center;
+    border-radius: 4px;
+    height: 2em;
+}
+.containerGeoLoc
+{
+    align-items: center;
+    margin: auto;
+    margin-left: 30%;
+}
+.autocomplete-dropdown-container
+{
+    
+}
