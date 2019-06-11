@@ -31,7 +31,7 @@ export default class Header extends Component {
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link onClick={this.logout.bind(this)}>Sair</Link>
+                                    <Link to ="/login" onClick={this.logout.bind(this)}>Sair</Link>
                                     </li>
                                 </ul>
                             </nav>
@@ -47,10 +47,10 @@ export default class Header extends Component {
                                         <Link to ="/minhasConsultas">Minhas consultas</Link>
                                     </li>
                                     <li>
-                                        <Link onClick={this.logout.bind(this)}>Sair</Link>
-                                    </li>
-                                    <li>
                                         <Link to ="/Cadastrarlocalizacao">Cadastrar residencia</Link>
+                                    </li>x
+                                    <li>
+                                    <Link to ="/login" onClick={this.logout.bind(this)}>Sair</Link>
                                     </li>
                                     
                                 </ul>

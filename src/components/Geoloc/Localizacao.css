@@ -1,4 +1,4 @@
-.entradaLocalizacao
+.Demo__search-bar-container
 {
     width: 50%;
     box-sizing: border-box;
@@ -7,13 +7,57 @@
     border-radius: 4px;
     height: 2em;
 }
-.containerGeoLoc
+.Demo__search-bar-container
 {
     align-items: center;
     margin: auto;
-    margin-left: 30%;
+    margin-left: 25%;
 }
 .autocomplete-dropdown-container
 {
-    
+    width: 50%;
 }
+.Demo__suggestion-item--active {
+    background-color: #fafafa;
+  }
+  .Demo__suggestion-item {
+    padding: 8px;
+    text-align: left;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  .Demo__autocomplete-container {
+    border-bottom: honeydew;
+    border-left: honeydew;
+    border-right: honeydew;
+    border-top: 1px solid #e6e6e6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 0 0 2px 2px;
+  }
+  .Demo__search-input,
+  .Demo__search-input:focus,
+  .Demo__search-input:active {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    border: honeydew;
+    display: block;
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    border-radius: 2px;
+    outline: none;
+  }
+  .Demo__search-input-container {
+    position: relative;
+  }
+  .btn__CadastrarLocalizacao{
+    margin: auto;
+    border-radius: 4px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 7em;
+    padding: 0.5em 3em;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  

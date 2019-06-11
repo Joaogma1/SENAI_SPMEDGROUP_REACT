@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from "axios"
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -8,8 +9,31 @@ import './Localizacao.css'
 export default class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: '' };
+    this.state = {
+    address: '', 
+    geoLoc:""
+   };
   }
+  CadastrarLocalizacao(event) {
+    event.preventDefault();
+    Axios.post("http://localhost:5000/api/Localizacoes", {
+        latitude: this.state.geoLoc.lat,
+        longitude: this.state.geoLoc.lng,
+        
+    }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': "bearer " + localStorage.getItem('usuario-spmedgroup')
+            }
+        })
+        .then(data => {
+            if (data.status === 200) {
+                // Alerta de Sucesso
+                alert("Localização cadastrada com sucesso !");
+            }
+        })
+        
+}
 
   handleChange = address => {
     this.setState({ address });
@@ -18,43 +42,52 @@ export default class LocationSearchInput extends React.Component {
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
+      .then(latLng => this.setState({geoLoc : latLng},() => {
+        console.log(this.state.geoLoc)
+      }))
+      
       .catch(error => console.error('Error', error));
   };
 
   render() {
     return (
+      <div>
+
+      
       <PlacesAutocomplete
         value={this.state.address}
         onChange={this.handleChange}
         onSelect={this.handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div className="containerGeoLoc">
+          <div className="Demo__search-bar-container">
             <input
               {...getInputProps({
                 placeholder: 'Digite o endereço...',
-                className: 'entradaLocalizacao',
+                className: 'Demo__search-input',
               })}
             />
-            <div className="autocomplete-dropdown-container">
+            <div className="Demo__autocomplete-container">
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {
-                const className = suggestion.active
+                const className = "Demo__suggestion-item".active
                   ? 'suggestion-item--active'
+                  
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: 'red', cursor: 'pointer' }
+                  ? { backgroundColor: '#dfe1e5', cursor: 'pointer' }
                   : { backgroundColor: '#ffffff', cursor: 'pointer' };
                 return (
-                  <div
+                  <div style ={{backgroundColor:"red"}}
                     {...getSuggestionItemProps(suggestion, {
                       className,
                       style,
                     })}
                   >
-                    <span>{suggestion.description}</span>
+                    <span onMouseOver={suggestion.active && (() => this.setState({address : suggestion.description},() => {
+                      console.log(this.state.address)
+                    })) }>{suggestion.description}</span>
                   </div>
                 );
               })}
@@ -62,6 +95,8 @@ export default class LocationSearchInput extends React.Component {
           </div>
         )}
       </PlacesAutocomplete>
+      <button className="btn__CadastrarLocalizacao" onClick={this.CadastrarLocalizacao.bind(this)}> Enviar</button>
+      </div>
     );
   }
 }

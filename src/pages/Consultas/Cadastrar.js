@@ -12,14 +12,20 @@ export default class CadastrarConsulta extends Component {
             idMedico: " ",
             dataConsulta: " ",
             statusConsulta: " ",
-            descricao: " "
+            descricao: " ",
+            hora:""
         }
+
+        
     }
     atualizaEstadoIdPaciente(event) {
         this.setState({ idPaciente: event.target.value })
     }
     atualizaEstadoIdMedico(event) {
         this.setState({ idMedico: event.target.value });
+    }
+    atualizaEstadoHora(event) {
+        this.setState({ hora: event.target.value });
     }
     atualizaEstadoDataConsulta(event) {
         this.setState({ dataConsulta: event.target.value })
@@ -89,11 +95,15 @@ export default class CadastrarConsulta extends Component {
         this.CarregarMedicos()
         this.CarregarPacientes()
     }
+    
 
     render() {
+        const data = new Date();
+        const dataMinima = data.getFullYear().toString()  ;
         return (
             <div>
                 <Header></Header>
+                <span>{dataMinima}</span>
                 <div className="CadastroGeral">
                     <div >
                         <form className="form__CadastroGeral" onSubmit={this.CadastrarConsulta.bind(this)}>
@@ -129,14 +139,16 @@ export default class CadastrarConsulta extends Component {
                             <select value={this.state.statusConsulta} onChange={this.atualizaStatusConsulta.bind(this)}>
                                     <option>Selecione o status</option>
                                     <option value="Agendada">Agendada</option>
-                                    <option value="Realizada">Realizada</option>
-                                    <option value="Cancelada">Cancelada</option>
+                                    <option value="Remarcada">Remarcada</option>
+
 
                                 </select>
                             
                              
                                
-                            <input type="date" onChange={this.atualizaEstadoDataConsulta.bind(this)} value={this.state.dataConsulta} />
+                            <input  type="date" min={dataMinima}  placeholder="Data da Consulta" onChange={this.atualizaEstadoDataConsulta.bind(this)} value={this.state.dataConsulta} />
+
+                            <input type="time" min="9:00" max="17:00" value={this.state.hora} onChange={this.atualizaEstadoHora.bind(this)} />
                             
                              
                                 
@@ -146,7 +158,7 @@ export default class CadastrarConsulta extends Component {
                         </form>
                     </div>
                     <div>
-                    <table class="rtable">
+                    <table className="rtable">
                         <thead>
                             <tr>
                                 <th>ID consulta</th>

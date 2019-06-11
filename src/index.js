@@ -12,7 +12,7 @@ import ListaPacientes from './pages/Pacientes/ListaPacientes'
 import Listagem from './pages/Consultas/Listagem'
 import ListaMed from './pages/Medicos/ListaMed'
 import Login from '../src/pages/Login/Login'
-import Localizacao from '../src/pages/Localização/Localizacao'
+import Localizacao from '../src/pages/Localizacao/Localizacao'
 import { usuarioAutenticado } from './services/auth';
 import { parseJwt } from './services/auth';
 import * as serviceWorker from './serviceWorker';
