@@ -48,7 +48,7 @@ export default class Header extends Component {
                                     </li>
                                     <li>
                                         <Link to ="/Cadastrarlocalizacao">Cadastrar residencia</Link>
-                                    </li>x
+                                    </li>
                                     <li>
                                     <Link to ="/login" onClick={this.logout.bind(this)}>Sair</Link>
                                     </li>

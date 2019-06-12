@@ -12,11 +12,9 @@ export default class CadastrarConsulta extends Component {
             idMedico: " ",
             dataConsulta: " ",
             statusConsulta: " ",
-            descricao: " ",
-            hora:""
+            descricao: "",
+            hora: ""
         }
-
-        
     }
     atualizaEstadoIdPaciente(event) {
         this.setState({ idPaciente: event.target.value })
@@ -41,7 +39,7 @@ export default class CadastrarConsulta extends Component {
         Axios.post("http://localhost:5000/api/Consultas", {
             idPaciente: this.state.idPaciente,
             idMedico: this.state.idMedico,
-            dataConsulta: this.state.dataConsulta,
+            dataConsulta: this.state.dataConsulta +  " " + this.state.hora,
             statusConsulta: this.state.statusConsulta,
             descricao: this.state.descricao
         }, {
@@ -99,16 +97,15 @@ export default class CadastrarConsulta extends Component {
 
     render() {
         const data = new Date();
-        const dataMinima = data.getFullYear().toString()  ;
+        const dataMinima = data.getFullYear().toString() + "-" + (data.getMonth()+1 < 10 && +"0") + (data.getMonth()+1) +"-"+ data.getDate().toString() ;
         return (
             <div>
                 <Header></Header>
-                <span>{dataMinima}</span>
                 <div className="CadastroGeral">
                     <div >
+                      
                         <form className="form__CadastroGeral" onSubmit={this.CadastrarConsulta.bind(this)}>
-                             
-                             
+                    
                                 <select value={this.state.idPaciente} onChange={this.atualizaEstadoIdPaciente.bind(this)}>
                                     <option >Nome do Paciente</option>
                                     {this.state.listaPacientes.map(element => {
@@ -146,10 +143,10 @@ export default class CadastrarConsulta extends Component {
                             
                              
                                
-                            <input  type="date" min={dataMinima}  placeholder="Data da Consulta" onChange={this.atualizaEstadoDataConsulta.bind(this)} value={this.state.dataConsulta} />
+                            <input  type="date" min={dataMinima} placeholder="Data da Consulta" onChange={this.atualizaEstadoDataConsulta.bind(this)} value={this.state.dataConsulta} />
 
-                            <input type="time" min="9:00" max="17:00" value={this.state.hora} onChange={this.atualizaEstadoHora.bind(this)} />
-                            
+                            <input type="time" min="9:00" max="18:00"  Value={this.state.hora} onChange={this.atualizaEstadoHora.bind(this)} />
+                            <span style={{color:"white"}} className="noten">Horario de funcionamento das 9AM até 6PM</span>
                              
                                 
                             <  textarea placeholder="Digite a descrição caso necessario" onChange={this.atualizaStatusDescricao.bind(this)} value={this.state.descricao} style={{ resize: "none" }}></textarea>
